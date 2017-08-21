@@ -166,6 +166,7 @@ starCountRef.on('value', function(snapshot) {
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <script>
         function uploadCRN() {
             var crn = $("#CRN").val();
@@ -173,8 +174,8 @@ starCountRef.on('value', function(snapshot) {
             var email_address = $("#email_address").val();
             console.log(crn);
 
-            var pushkey = firebase.database().ref().child('CRNs').push().key;
-                firebase.database().ref('CRNs/' + pushkey).set({
+            var pushkey = firebase.database().ref().child('toValidateCRNs').push().key;
+                firebase.database().ref('toValidateCRNs/' + pushkey).set({
                 CRN: crn,
                 phone_number: phone_number,
                 email_address: email_address,
