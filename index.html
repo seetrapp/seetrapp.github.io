@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Seetr | We'll Get You a Seat</title>
+    <link rel="shortcut icon" href="">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC3x6zontPbYVPTf7a6UXjsbgPbXBnhzmk",
+        authDomain: "seetr-318b8.firebaseapp.com",
+        databaseURL: "https://seetr-318b8.firebaseio.com",
+        storageBucket: "seetr-318b8.appspot.com",
+        messagingSenderId: "601799585251"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+</head>
+
+<body>
+  <nav class="blue-grey darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Seetr (BETA)</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Home</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Home</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center text-blue-grey darken-4">Be the first to know when that class has an open seat</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">We constantly monitor classes and alert you as soon as a seat becomes available.</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light light-blue darken-3">Get Started</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="medium material-icons">add</i></h2>
+            <h5 class="center">Submit the CRN</h5>
+
+            <p class="light">Find the CRN(s) of the courses you want to track and submit it to us.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="medium material-icons">donut_large</i></h2>
+            <h5 class="center">The CRN is entered into our tracking stream</h5>
+
+            <p class="light">The submitted CRN is entered into our almost realtime tracking stream, constanty monitoring and looking for drops.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="medium material-icons">event_seat</i></h2>
+            <h5 class="center">We monitor, you chill</h5>
+
+            <p class="light">Once an open seat is found, we immediately alert you via email and text. The rest is up to you!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+
+    <div class="row">
+    <form id="crnForm" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="85423" id="CRN" type="number" class="validate">
+          <label for="course_CRN">Course CRN</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email_address" type="email" class="validate">
+          <label for="email">E-mail Address</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="phone_number" type="number" class="validate">
+          <label for="phone_number">Phone Number (So we can alert you when a seat becomes available.)</label>
+        </div>
+      </div>
+      <button class="btn submitButton" onclick="uploadCRN()">Submit</button>
+    </form>
+  </div>
+
+  </div>
+
+  <!--Footer-->
+  <footer class="page-footer blue-grey darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Seetr</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. We got tired of missing out on class seats so we decided to build this app for everyone to utilitze. Currently only for USF students</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Follow on Twitter</a></li>
+            <li><a class="white-text" href="#!">E-mail us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made with <a class="orange-text text-lighten-3" href="http://materializecss.com">love.</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+    <script>
+        var starCountRef = firebase.database().ref('CRNs/-KftuGNDe2wDf8jQT8kL/CRN');
+starCountRef.on('value', function(snapshot) {
+  console.log(snapshot.val());
+});
+    </script>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function uploadCRN() {
+            var crn = $("#CRN").val();
+            var phone_number = $("#phone_number").val();
+            var email_address = $("#email_address").val();
+            console.log(crn);
+
+            var pushkey = firebase.database().ref().child('CRNs').push().key;
+                firebase.database().ref('CRNs/' + pushkey).set({
+               CRN: crn,
+                phone_number: phone_number,
+                email_address: email_address,
+                count: 0
+            });
+
+            window.location.href = "submitted.html";
+        }
+    </script>
+</body>
+</html>
